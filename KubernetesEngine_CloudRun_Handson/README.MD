@@ -170,7 +170,7 @@ spec:
   ports:
   - name: http
     port: 80
-    targetPort:8080
+    targetPort: 8080
 ```
 ```text
 Ctrl + x で変更内容を保存後終了
