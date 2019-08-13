@@ -1,11 +1,10 @@
 Kubernetes Engine & Cloud Run ハンズオン　トレーニング コマンド集
 ------------------------------------------------------------
 
-##### 使用するプロジェクトを選択及び受験者の英語のお名前セット
+##### 使用するプロジェクトを選択
 ```text
 export PROJECT_ID=[ ご使用するプロジェクトIDを指定 ]
 gcloud config set project $PROJECT_ID
-export MY_NAME=[受験者の英語のお名前]
 ```
 <br/>
 
@@ -17,7 +16,7 @@ gcloud config set compute/zone asia-northeast1-a
 
 #### Kubernetes クラスタを作成する
 ```text
-gcloud container clusters create handson-$MY_NAME --num-nodes=2
+gcloud container clusters create handson-[ 受験者の英語のお名前 ] --num-nodes=2
 ```
 <br/>
 
@@ -70,9 +69,9 @@ nano cloudbuild.yaml
 ```yaml
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/helloapp-$MY_NAME:latest', '.']
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/helloapp-[ 受験者の英語のお名前 ]:latest', '.']
 images:
-- 'gcr.io/$PROJECT_ID/helloapp-$MY_NAME'
+- 'gcr.io/$PROJECT_ID/helloapp-[ 受験者の英語のお名前 ]'
 ```
 ```text
 Ctrl + x で変更内容を保存後終了
@@ -93,7 +92,7 @@ gcloud container images list
 
 #### Kubernetes Podを作成する(Webアプリの稼働)
 ```text
-kubectl run hello-app --image=gcr.io/$PORJECT_ID/helloapp-$MY_NAME:latest --port 8080 --replicas=5
+kubectl run hello-app --image=gcr.io/$PORJECT_ID/helloapp-[ 受験者の英語のお名前 ]E:latest --port 8080 --replicas=5
 ```
 <br/>
 
@@ -156,7 +155,7 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: gcr.io/[PROJECT_ID]/helloapp-[受験者の英語のお名前]:latest
+        image: gcr.io/[PROJECT_ID]/helloapp-[ 受験者の英語のお名前 ]:latest
         port:
         - containerPort: 8080
 ---
@@ -221,10 +220,10 @@ kubectl get pod
 
 #### Cloud Runでアプリを稼働させる
 ```text
-gcloud beta run deploy hello-run-app-$MY_NAME --image gcr.io/$PROJECT_ID/helloapp-$MY_NAME:latest --region us-central1
+gcloud beta run deploy hello-run-app-[ 受験者の英語のお名前 ] --image gcr.io/$PROJECT_ID/helloapp-[ 受験者の英語のお名前 ]:latest --region us-central1
 ```
 
 #### 作成した Cloud Runのサービス情報を表示する
 ```text
-gcloud beta run services describe hello-run-app-$MY_NAME --region us-central1
+gcloud beta run services describe hello-run-app-[ 受験者の英語のお名前 ] --region us-central1
 ```
