@@ -17,7 +17,7 @@ gcloud config set compute/zone asia-northest1-a
 
 #### Kubernetes クラスタを作成する
 ```text
-gcloud container clusters handson-[受験者の英語のお名前]
+gcloud container clusters handson-$MY_NAME
 ```
 <br/>
 
