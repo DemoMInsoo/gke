@@ -11,7 +11,7 @@ export MY_NAME=[受験者の英語のお名前]
 
 ##### 使用するリージョンとゾーンを選択
 ```text
-gcloud config set compute/zone asia-northest1-a
+gcloud config set compute/zone asia-northeast1-a
 ```
 <br/>
 
