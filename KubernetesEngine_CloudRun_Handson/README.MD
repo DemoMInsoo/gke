@@ -156,7 +156,7 @@ spec:
       containers:
       - name: hello-app
         image: gcr.io/[PROJECT_ID]/helloapp-[ 受験者の英語のお名前 ]:latest
-        port:
+        ports:
         - containerPort: 8080
 ---
 apiVersion: v1
