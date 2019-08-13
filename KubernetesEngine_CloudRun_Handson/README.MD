@@ -177,3 +177,54 @@ spec:
 Ctrl + x で変更内容を保存後終了
 ```
 <br/>
+
+#### Kubernetesにデプロイメント定義ファイルを適用する
+```text
+kubectl apply -f kube-deploy.yaml
+```
+<br/>
+
+#### Pod一覧を表示
+```text
+kubectl get pod
+```
+<br/>
+
+####  定義ファイルのレプリカ数の指定を１から３へ変更する
+```text
+nano kube-deploy.yaml
+```
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-app
+```
+<br/>
+
+#### Kubernetesに変更したデプロイメント定義ファイルを適用する
+```text
+kubectl apply -f kube-deploy.yaml
+```
+<br/>
+
+#### Pod一覧を表示する
+```text
+kubectl get pod
+```
+<br/>
+
+#### Cloud Runでアプリを稼働させる
+```text
+gcloud beta run deploy hello-run-app-$MY_NAME --image gcr.io/$PROJECT_ID/helloapp-$MY_NAME:latest --region us-central1
+```
+
+#### 作成した Cloud Runのサービス情報を表示する
+```text
+gcloud beta run services describe hello-run-app-$MY_NAME --region us-central1
+```
