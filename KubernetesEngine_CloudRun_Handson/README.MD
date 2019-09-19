@@ -16,7 +16,7 @@ gcloud config set compute/zone asia-northeast1-a
 
 #### Kubernetes クラスタを作成する
 ```text
-gcloud container clusters create handson-[ 受験者の英語のお名前 ] --num-nodes=2
+gcloud container clusters create handson-gke --num-nodes=2
 ```
 <br/>
 
@@ -69,9 +69,9 @@ nano cloudbuild.yaml
 ```yaml
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/helloapp-[ 受験者の英語のお名前 ]:latest', '.']
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/helloapp-gke:latest', '.']
 images:
-- 'gcr.io/$PROJECT_ID/helloapp-[ 受験者の英語のお名前 ]'
+- 'gcr.io/$PROJECT_ID/helloapp-gke'
 ```
 ```text
 Ctrl + x で変更内容を保存後終了
@@ -92,7 +92,7 @@ gcloud container images list
 
 #### Kubernetes Podを作成する(Webアプリの稼働)
 ```text
-kubectl run hello-app --image=gcr.io/$PROJECT_ID/helloapp-[ 受験者の英語のお名前 ]:latest --port 8080 --replicas=5
+kubectl run hello-app --image=gcr.io/$PROJECT_ID/helloapp-gke:latest --port 8080 --replicas=5
 ```
 <br/>
 
@@ -155,7 +155,7 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: gcr.io/[ PROJECT_ID ]/helloapp-[ 受験者の英語のお名前 ]:latest
+        image: gcr.io/[ PROJECT_ID ]/helloapp-gke:latest
         ports:
         - containerPort: 8080
 ---
@@ -220,10 +220,10 @@ kubectl get pod
 
 #### Cloud Runでアプリを稼働させる
 ```text
-gcloud beta run deploy hello-run-app-[ 受験者の英語のお名前 ] --image gcr.io/$PROJECT_ID/helloapp-[ 受験者の英語のお名前 ]:latest --region us-central1
+gcloud beta run deploy hello-run-app --image gcr.io/$PROJECT_ID/helloapp-gke:latest --region us-central1
 ```
 
 #### 作成した Cloud Runのサービス情報を表示する
 ```text
-gcloud beta run services describe hello-run-app-[ 受験者の英語のお名前 ] --region us-central1
+gcloud beta run services describe hello-run-app --region us-central1
 ```
