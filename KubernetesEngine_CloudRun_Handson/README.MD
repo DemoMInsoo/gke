@@ -92,7 +92,7 @@ gcloud container images list
 
 #### Kubernetes Podを作成する(Webアプリの稼働)
 ```text
-kubectl run hello-app --image=gcr.io/$PROJECT_ID/helloapp-gke:latest --port 8080 --replicas=5
+kubectl run hello-app --image=gcr.io/$PROJECT_ID/helloapp-gke:latest --port 8080 --replicas=3
 ```
 <br/>
 
